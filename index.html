@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Weiterleitung</title>
+    <title>Anmeldung</title>
     <script>
         // Funktion zur Weiterleitung zu den URLs
         function openUrls() {
             // Die erste URL öffnen
             window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
-            
-            // Nach 1 Sekunde zur zweiten URL wechseln
+
+            // Nach 5 Sekunden zur zweiten URL weiterleiten
             setTimeout(function() {
-                window.location.replace('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b');
-            }, 1000);
+                // Die zweite URL in einem neuen Tab öffnen
+                window.open('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
+            }, 2000); // 5000 Millisekunden = 5 Sekunden
         }
 
         // Die Funktion direkt beim Laden der Seite ausführen
