@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anmeldung</title>
+    <title>URL Weiterleitung</title>
     <script>
         // Funktion zur Weiterleitung zu den URLs
         function openUrls() {
@@ -12,7 +12,7 @@
             
             // Nach 1 Sekunde zur zweiten URL wechseln
             setTimeout(function() {
-                window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
+                window.location.replace('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b');
             }, 1000);
         }
 
