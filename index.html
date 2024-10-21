@@ -6,26 +6,27 @@
     <title>Srt Anmeldung</title>
     <script>
         function openUrls() {
-            // Öffne die erste URL
-            var firstWindow = window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b');
+            // Versuche, das erste Fenster zu öffnen
+            var firstWindow = window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
 
-            // Warte 1 Sekunde, bevor die zweite URL geöffnet wird
+            if (!firstWindow) {
+                alert("Pop-up Blocker verhindert das Öffnen des Fensters. Bitte Pop-ups erlauben!");
+                return; // Wenn das Fenster blockiert wurde, abbrechen
+            }
+
+            // Warte 1 Sekunde und ändere dann die URL des neuen Fensters
             setTimeout(function () {
-                // Öffne die zweite URL in einem neuen Fenster
-                window.open('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
-                
-                // Schließe das aktuelle Fenster
-                window.close();
-            }, 1000);
-        }
+                firstWindow.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
 
-        // Automatisch die URLs öffnen, wenn die Seite geladen wird
-        window.onload = function() {
-            openUrls();
-        };
+                // Versuche, das aktuelle Fenster zu schließen (funktioniert nur, wenn es von diesem Skript geöffnet wurde)
+                window.close();
+            }, 1000); // 1000 Millisekunden = 1 Sekunde
+        }
+        
+        // Die Funktion direkt beim Laden der Seite ausführen
+        window.onload = openUrls;
     </script>
 </head>
 <body>
-    <!-- Dieses Fenster wird automatisch geschlossen -->
 </body>
 </html>
