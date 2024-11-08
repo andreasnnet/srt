@@ -6,27 +6,23 @@
     <title>Srt Anmeldung</title>
     <script>
         function openUrls() {
-            // Versuche, das erste Fenster zu öffnen
+            // Die erste URL ist gekürzt (Beispiel-URL)
             var firstWindow = window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
 
             if (!firstWindow) {
-                alert("Anmeldung SRT");
-                return; // Wenn das Fenster blockiert wurde, abbrechen
+                alert("Pop-up Blocker verhindert das Öffnen des Fensters. Bitte Pop-ups erlauben!");
+                return;
             }
 
-            // Warte 1 Sekunde und ändere dann die URL des neuen Fensters
+            // Warte 1 Sekunde und ändere dann die URL des neuen Fensters auf die zweite gekürzte URL
             setTimeout(function () {
                 firstWindow.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
-
-                // Versuche, das aktuelle Fenster zu schließen (funktioniert nur, wenn es von diesem Skript geöffnet wurde)
                 window.close();
-            }, 1000); // 1000 Millisekunden = 1 Sekunde
+            }, 1000); 
         }
-        
-        // Die Funktion direkt beim Laden der Seite ausführen
-        window.onload = openUrls;
     </script>
 </head>
 <body>
+    <button onclick="openUrls()">Anmeldung starten</button>
 </body>
 </html>
