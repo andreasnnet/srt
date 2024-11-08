@@ -6,8 +6,11 @@
     <title>Srt Anmeldung</title>
     <script>
         window.onload = function() {
-            // Direktes Weiterleiten zur zweiten URL
-            window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
+            // Verzögerung von 3 Sekunden (3000 Millisekunden)
+            setTimeout(function() {
+                // Direktes Weiterleiten zur zweiten URL nach der Verzögerung
+                window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
+            }, 1000);  // 3000 Millisekunden = 3 Sekunden
         };
     </script>
 </head>
