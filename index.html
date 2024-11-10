@@ -9,28 +9,26 @@
         #anmeldenButton {
             padding: 15px 40px;
             font-size: 1.5em;
-            background-color: #2cb86b; /* Grüner Farbton */
+            background-color: #2cb86b;
             color: white;
             border: none;
-            border-radius: 30px; /* Stärker abgerundete Ecken im iOS-Stil */
+            border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Leichter Schatteneffekt */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
             transition: background-color 0.3s, transform 0.3s;
         }
 
-        /* Hover-Effekte */
         #anmeldenButton:hover {
-            background-color: #249b5a; /* Etwas dunkleres Grün beim Hover */
-            transform: translateY(-3px); /* Leichtes Schweben */
+            background-color: #249b5a;
+            transform: translateY(-3px);
         }
 
-        /* Button-Container zentrieren */
         .button-container {
             display: flex;
             justify-content: center;
             align-items: center;
             position: absolute;
-            bottom: 20%; /* Position im unteren Mittelfeld */
+            bottom: 20%;
             width: 100%;
         }
     </style>
@@ -39,28 +37,24 @@
             // Öffne die erste URL im selben Tab
             window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
 
+            // Erhöhe die Verzögerung auf 2 Sekunden (2000 ms)
             setTimeout(function () {
-                // Nach 500ms auf die zweite URL weiterleiten
                 window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
-            }, 500); // 0.5 Sekunden Verzögerung, um die erste URL vollständig zu laden
+            }, 2000); // 2 Sekunden Verzögerung
         }
 
-        // Funktion, um auf den "Speichern"-Button zu klicken
         function clickSaveButton() {
-            // Sobald die zweite Seite geladen ist, wird sofort der "Speichern"-Button geklickt
             const saveButton = document.querySelector('button[type="submit"], input[type="submit"], .save-button');
             if (saveButton) {
-                saveButton.click(); // Klick auf den "Speichern"-Button
+                saveButton.click();
             }
         }
 
         window.onload = function() {
-            // Wenn wir auf der zweiten Seite sind, auf den Speichern-Button klicken
             if (window.location.href.includes("Timetracking")) {
                 clickSaveButton();
             }
 
-            // Erstelle den Anmelde-Button
             const button = document.createElement("button");
             button.id = "anmeldenButton";
             button.innerText = "Anmelden";
