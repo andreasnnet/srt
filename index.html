@@ -34,27 +34,25 @@
     </style>
     <script>
         function openUrls() {
-            // Öffne die erste URL im selben Tab
-            window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
+            // Öffnet die erste URL in einem neuen Tab
+            let firstWindow = window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
 
-            // Erhöhe die Verzögerung auf 2 Sekunden (2000 ms)
+            // Nach einer Verzögerung die zweite URL in einem anderen neuen Tab öffnen
             setTimeout(function () {
-                window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
+                let secondWindow = window.open('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
+
+                // Versuche den Speichern-Button zu klicken, nachdem die zweite Seite geladen ist
+                secondWindow.onload = function() {
+                    const saveButton = secondWindow.document.querySelector('button[type="submit"], input[type="submit"], .save-button');
+                    if (saveButton) {
+                        saveButton.click();
+                    }
+                };
             }, 2000); // 2 Sekunden Verzögerung
         }
 
-        function clickSaveButton() {
-            const saveButton = document.querySelector('button[type="submit"], input[type="submit"], .save-button');
-            if (saveButton) {
-                saveButton.click();
-            }
-        }
-
         window.onload = function() {
-            if (window.location.href.includes("Timetracking")) {
-                clickSaveButton();
-            }
-
+            // Erstelle den Anmelde-Button
             const button = document.createElement("button");
             button.id = "anmeldenButton";
             button.innerText = "Anmelden";
