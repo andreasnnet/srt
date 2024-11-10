@@ -38,21 +38,10 @@
             display: none;
         }
     </style>
-    <script>
-        function openUrls() {
-            // Erstes Formular zur Anmeldung absenden
-            document.getElementById("hiddenForm").submit();
-
-            // Nach einer kurzen Verzögerung zur zweiten URL weiterleiten
-            setTimeout(function () {
-                window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
-            }, 500);
-        }
-    </script>
 </head>
 <body>
     <!-- Unsichtbares Formular, das die erste URL aufruft -->
-    <form id="hiddenForm" action="https://www.srt-wi-service.de/index.php" method="get" target="_self">
+    <form id="hiddenForm" action="https://www.srt-wi-service.de/index.php" method="get" target="_self" onsubmit="redirectAfterLogin()">
         <input type="hidden" name="com" value="Login">
         <input type="hidden" name="task" value="QR">
         <input type="hidden" name="usernumber" value="20033">
@@ -62,5 +51,19 @@
     </form>
 
     <button onclick="openUrls()">Anmeldung</button>
+
+    <script>
+        function openUrls() {
+            // Erstes Formular zur Anmeldung absenden
+            document.getElementById("hiddenForm").submit();
+        }
+
+        function redirectAfterLogin() {
+            // Nach einer kurzen Verzögerung zur zweiten URL weiterleiten
+            setTimeout(function () {
+                window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
+            }, 500);
+        }
+    </script>
 </body>
 </html>
