@@ -16,7 +16,7 @@
             border: none;
         }
 
-        /* Stil für die Buttons */
+        /* Stil für den Button */
         .button {
             padding: 15px 40px;
             font-size: 1.5em;
@@ -45,20 +45,25 @@
             width: 100%;
         }
     </style>
+    <script>
+        function openLinks() {
+            // Erste URL sofort öffnen
+            window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
+            // Zweite URL nach 0,5 Sekunden öffnen
+            setTimeout(function() {
+                window.open('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
+            }, 500);
+        }
+    </script>
 </head>
 <body>
     <!-- Iframe für den Website-Hintergrund -->
-    <iframe class="background-iframe" src="https://www.srt-wiesbaden.de/"></iframe>
+    <iframe class="background-iframe" src="https://www.beispielseite.de"></iframe>
 
     <div class="button-container">
-        <!-- Erste Seite Button -->
-        <button class="button" onclick="window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');">
-            Anmeldung Schritt 1
-        </button>
-
-        <!-- Zweite Seite Button -->
-        <button class="button" onclick="window.open('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');">
-            Anmeldung Schritt 2
+        <!-- Anmelde-Button -->
+        <button class="button" onclick="openLinks();">
+            Anmeldung
         </button>
     </div>
 </body>
