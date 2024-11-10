@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srt Anmeldung</title>
     <style>
-        /* Hintergrund mit einem iframe */
-        .background-iframe {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            border: none;
+        /* Schwarzer Hintergrund für den gesamten Body */
+        body {
+            background-color: #000;
+            color: white; /* Optional: Setzt den Text auf weiß, falls weiterer Text hinzugefügt wird */
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
 
         /* Stil für den Button */
@@ -47,16 +44,22 @@
     </style>
     <script>
         function openLinks() {
-            // Beide URLs direkt hintereinander öffnen
-            window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
-            window.open('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
+            // Öffnen der ersten URL in einem neuen Tab
+            let firstWindow = window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
+            
+            // Öffnen eines temporären Fensters für die zweite URL
+            let secondWindow = window.open('', '_blank');
+            
+            // Nach einer kurzen Verzögerung die zweite URL im zweiten Fenster öffnen
+            setTimeout(function() {
+                secondWindow.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
+                // Schließen des ersten Fensters
+                firstWindow.close();
+            }, 500);
         }
     </script>
 </head>
 <body>
-    <!-- Iframe für den Website-Hintergrund -->
-    <iframe class="background-iframe" src="https://media.gettyimages.com/id/1358949688/de/video/flooding-4k-aufl%C3%B6sung.jpg?s=640x640&k=20&c=4FySVo5IdAHvroNq8asEW1FmzbMqg0VihaA9SZH4kIQ="></iframe>
-
     <div class="button-container">
         <!-- Anmelde-Button -->
         <button class="button" onclick="openLinks();">
