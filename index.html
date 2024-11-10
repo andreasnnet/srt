@@ -7,21 +7,21 @@
     <style>
         /* Stil für den Button */
         #anmeldenButton {
-            padding: 15px 30px;
+            padding: 15px 40px;
             font-size: 1.5em;
             background-color: #2cb86b; /* Grüner Farbton */
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 30px; /* Stärker abgerundete Ecken im iOS-Stil */
             cursor: pointer;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Schatteneffekt */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Leichter Schatteneffekt */
             transition: background-color 0.3s, transform 0.3s;
         }
 
         /* Hover-Effekte */
         #anmeldenButton:hover {
             background-color: #249b5a; /* etwas dunkleres Grün beim Hover */
-            transform: translateY(-2px); /* leichter Schwebeeffekt */
+            transform: translateY(-3px); /* leichtes Schweben */
         }
 
         /* Button-Container zentrieren */
@@ -44,7 +44,7 @@
                 } else {
                     alert('Popup-Blocker aktiv: Bitte deaktivieren Sie den Popup-Blocker und versuchen Sie es erneut.');
                 }
-            }, 1000); // 1 Sekunde Verzögerung
+            }, 500); // 1 Sekunde Verzögerung
         }
 
         window.onload = function() {
@@ -65,4 +65,3 @@
 <body>
 </body>
 </html>
-
