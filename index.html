@@ -47,14 +47,9 @@
             // Öffnen der ersten URL in einem neuen Tab
             let firstWindow = window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
             
-            // Öffnen eines temporären Fensters für die zweite URL
-            let secondWindow = window.open('', '_blank');
-            
-            // Nach einer kurzen Verzögerung die zweite URL im zweiten Fenster öffnen
+            // Nach einer kurzen Verzögerung die URL im selben Fenster auf die zweite URL aktualisieren
             setTimeout(function() {
-                secondWindow.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
-                // Schließen des ersten Fensters
-                firstWindow.close();
+                firstWindow.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
             }, 500);
         }
     </script>
