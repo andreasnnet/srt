@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srt Anmeldung</title>
     <style>
-        /* Stil für den Button */
+        /* Stil für die Buttons */
         .button {
             padding: 15px 40px;
             font-size: 1.5em;
@@ -34,48 +34,18 @@
             width: 100%;
         }
     </style>
-    <script>
-        function loadFirstUrl() {
-            // Öffne die erste URL im aktuellen Tab
-            window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
-        }
-
-        function loadSecondUrl() {
-            // Öffne die zweite URL im aktuellen Tab
-            window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
-        }
-
-        window.onload = function() {
-            // Erstellt den ersten Button
-            const firstButton = document.createElement("button");
-            firstButton.className = "button";
-            firstButton.innerText = "Anmeldung";
-            firstButton.onclick = loadFirstUrl;
-
-            // Zweiten Button erstellen
-            const secondButton = document.createElement("button");
-            secondButton.className = "button";
-            secondButton.innerText = "Bestätigung";
-            secondButton.onclick = loadSecondUrl;
-
-            const container = document.createElement("div");
-            container.className = "button-container";
-            container.appendChild(firstButton);
-            container.appendChild(secondButton);
-
-            document.body.appendChild(container);
-
-            // Zweiten Button ausblenden, bis der erste Schritt abgeschlossen ist
-            secondButton.style.display = "none";
-
-            // Prüfen, ob der Benutzer von der ersten URL zurückkehrt, und den zweiten Button anzeigen
-            if (document.referrer.includes("Login&task=QR")) {
-                firstButton.style.display = "none";
-                secondButton.style.display = "block";
-            }
-        };
-    </script>
 </head>
 <body>
+    <div class="button-container">
+        <!-- Erste Seite Button -->
+        <button class="button" onclick="window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');">
+            Anmeldung Schritt 1
+        </button>
+
+        <!-- Zweite Seite Button -->
+        <button class="button" onclick="window.open('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');">
+            Anmeldung Schritt 2
+        </button>
+    </div>
 </body>
 </html>
