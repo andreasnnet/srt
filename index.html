@@ -32,37 +32,28 @@
         }
     </style>
     <script>
-        async function openUrls() {
-            // Erste Seite laden
+        function loadFirstUrl() {
+            // Öffnet die erste URL und wartet auf Bestätigung
             window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
 
-            // Warten, bis die erste Seite vollständig geladen ist (5 Sekunden Verzögerung)
-            await new Promise(resolve => setTimeout(resolve, 5000));
+            // Hinweis für den Nutzer zum Bestätigen der zweiten Seite
+            setTimeout(function() {
+                alert("Die erste Seite wurde geladen. Bestätigen Sie bitte mit OK, um zur nächsten Seite zu wechseln.");
+                loadSecondUrl();
+            }, 1000); // 1 Sekunden warten, damit die Seite vollständig geladen wird
+        }
 
-            // Weiterleiten zur zweiten Seite
+        function loadSecondUrl() {
+            // Leitet auf die zweite URL weiter
             window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
         }
 
-        // Versucht, auf der zweiten Seite den Speichern-Button zu klicken, sobald sie geladen ist
-        function tryClickSaveButton() {
-            const saveButton = document.querySelector('button[type="submit"], input[type="submit"], .save-button');
-            if (saveButton) {
-                saveButton.click();
-            } else {
-                console.log("Speichern-Button nicht gefunden.");
-            }
-        }
-
-        // Stellt sicher, dass bei Laden der zweiten Seite der Button automatisch geklickt wird
         window.onload = function() {
-            if (window.location.href.includes("Timetracking")) {
-                setTimeout(tryClickSaveButton, 2000); // 2 Sekunden Verzögerung zum Sichern, dass alles geladen ist
-            }
-
+            // Erstellt den Anmelde-Button
             const button = document.createElement("button");
             button.id = "anmeldenButton";
             button.innerText = "Anmelden";
-            button.onclick = openUrls;
+            button.onclick = loadFirstUrl;
 
             const container = document.createElement("div");
             container.className = "button-container";
