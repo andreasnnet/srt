@@ -36,12 +36,13 @@
     </style>
     <script>
         function openUrlsInSameTab() {
-            // Zuerst die erste URL im selben Tab laden
+            // Lade die erste URL im gleichen Tab
             window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
 
-            // Nach einer kurzen Verzögerung die zweite URL laden
+            // Nach einer kurzen Verzögerung (ca. 1 Sekunde) die zweite URL laden
             setTimeout(function() {
-                window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
+                // Ersetze die aktuelle Seite durch die zweite URL
+                window.location.replace('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b');
             }, 1000); // 1 Sekunde Verzögerung
         }
 
