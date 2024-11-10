@@ -5,60 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srt Anmeldung</title>
     <style>
-        /* Stil für den Button */
+        /* Stil für den Button (optional) */
         #anmeldenButton {
             padding: 15px 40px;
             font-size: 1.5em;
             background-color: #2cb86b; /* Grüner Farbton */
             color: white;
             border: none;
-            border-radius: 30px; /* Stärker abgerundete Ecken im iOS-Stil */
+            border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Leichter Schatteneffekt */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
             transition: background-color 0.3s, transform 0.3s;
         }
-
         /* Hover-Effekte */
         #anmeldenButton:hover {
-            background-color: #249b5a; /* etwas dunkleres Grün beim Hover */
-            transform: translateY(-3px); /* leichtes Schweben */
+            background-color: #249b5a;
+            transform: translateY(-3px);
         }
-
-        /* Button-Container zentrieren */
         .button-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            position: absolute;
-            bottom: 20%; /* Position im unteren Mittelfeld */
+            position: fixed;
+            bottom: 20px;
             width: 100%;
         }
     </style>
     <script>
-        function openUrls() {
-            const firstTab = window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
+        // Funktion, die automatisch die URLs lädt und den "Speichern"-Button klickt
+        function autoNavigate() {
+            // Lade die erste URL
+            window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
 
-            setTimeout(function () {
-                if (firstTab) {
-                    firstTab.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
-                } else {
-                    alert('Popup-Blocker aktiv: Bitte deaktivieren Sie den Popup-Blocker und versuchen Sie es erneut.');
-                }
-            }, 500); // 1 Sekunde Verzögerung
+            // Nach einer Verzögerung von 1 Sekunde weiter zur zweiten URL
+            setTimeout(function() {
+                // Ersetze die URL mit der zweiten
+                window.location.replace('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b');
+
+                // Nach 2 Sekunden (wenn die Seite geladen ist), simuliere einen Klick auf den "Speichern"-Button
+                setTimeout(function() {
+                    const saveButton = document.querySelector('button[type="submit"], input[type="submit"], .save-button');
+                    if (saveButton) {
+                        saveButton.click(); // Klick auf den "Speichern"-Button
+                    }
+                }, 2000); // 2 Sekunden Verzögerung
+            }, 1000); // 1 Sekunde Verzögerung
         }
 
         window.onload = function() {
-            // Erstelle den Button und setze ihn in den Container
-            const button = document.createElement("button");
-            button.id = "anmeldenButton";
-            button.innerText = "Anmelden";
-            button.onclick = openUrls;
-
-            const container = document.createElement("div");
-            container.className = "button-container";
-            container.appendChild(button);
-
-            document.body.appendChild(container);
+            // Führe die automatische Navigation sofort nach dem Laden der Seite aus
+            autoNavigate();
         }
     </script>
 </head>
