@@ -32,22 +32,35 @@
         button:hover {
             background-color: #2cb86b; /* Etwas dunkleres Grün beim Hover */
         }
+
+        /* Unsichtbares Formular */
+        #hiddenForm {
+            display: none;
+        }
     </style>
     <script>
         function openUrls() {
-            // Sendet eine Hintergrundanforderung an die erste URL
-            fetch('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b')
-                .then(response => {
-                    // Weiterleitung zur zweiten URL im selben Tab nach erfolgreicher Anfrage
-                    window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
-                })
-                .catch(error => {
-                    alert("Fehler beim Laden der Seite: " + error);
-                });
+            // Erstes Formular zur Anmeldung absenden
+            document.getElementById("hiddenForm").submit();
+
+            // Nach einer kurzen Verzögerung zur zweiten URL weiterleiten
+            setTimeout(function () {
+                window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
+            }, 500);
         }
     </script>
 </head>
 <body>
+    <!-- Unsichtbares Formular, das die erste URL aufruft -->
+    <form id="hiddenForm" action="https://www.srt-wi-service.de/index.php" method="get" target="_self">
+        <input type="hidden" name="com" value="Login">
+        <input type="hidden" name="task" value="QR">
+        <input type="hidden" name="usernumber" value="20033">
+        <input type="hidden" name="lastname" value="Neumann">
+        <input type="hidden" name="firstname" value="Andreas">
+        <input type="hidden" name="key" value="6532cb0baaee67165eb45ee2c1787f7b">
+    </form>
+
     <button onclick="openUrls()">Anmeldung</button>
 </body>
 </html>
