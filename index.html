@@ -6,18 +6,17 @@
     <title>Srt Anmeldung</title>
     <script>
         function openUrls() {
-            // Lade die erste URL (Login) im aktuellen Fenster
-            window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
+            // Öffne die erste URL (Login) in einem neuen Tab
+            window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
 
-            // Nach einer kurzen Verzögerung wird automatisch zur zweiten URL weitergeleitet
+            // Öffne die zweite URL (Timetracking) in einem neuen Tab nach kurzer Verzögerung
             setTimeout(function () {
-                window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
-            }, 500); // 1 Sekunde warten, um sicherzustellen, dass der Login abgeschlossen ist
+                window.open('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
+            }, 500); // 500 ms Verzögerung
         }
 
-        // Die Funktion erst nach Benutzerinteraktion aufrufen
         window.onload = function() {
-            // Füge eine Schaltfläche zur Anmeldung hinzu
+            // Erstelle die Schaltfläche für die Anmeldung
             const button = document.createElement("button");
             button.innerText = "Anmelden";
             button.style.padding = "15px 30px";
