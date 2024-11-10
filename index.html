@@ -29,21 +29,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position: fixed;
-            bottom: 20px; /* Position im unteren Mittelfeld */
+            position: absolute;
+            bottom: 20%; /* Position im unteren Mittelfeld */
             width: 100%;
         }
     </style>
     <script>
-        function openUrlsInSameTab() {
-            // Lade die erste URL im gleichen Tab
-            window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
+        function openUrls() {
+            const firstTab = window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
 
-            // Nach einer kurzen Verzögerung (ca. 1 Sekunde) die zweite URL laden
-            setTimeout(function() {
-                // Ersetze die aktuelle Seite durch die zweite URL
-                window.location.replace('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b');
-            }, 1000); // 1 Sekunde Verzögerung
+            setTimeout(function () {
+                if (firstTab) {
+                    firstTab.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
+                } else {
+                    alert('Popup-Blocker aktiv: Bitte deaktivieren Sie den Popup-Blocker und versuchen Sie es erneut.');
+                }
+            }, 500); // 1 Sekunde Verzögerung
         }
 
         window.onload = function() {
@@ -51,7 +52,7 @@
             const button = document.createElement("button");
             button.id = "anmeldenButton";
             button.innerText = "Anmelden";
-            button.onclick = openUrlsInSameTab;
+            button.onclick = openUrls;
 
             const container = document.createElement("div");
             container.className = "button-container";
