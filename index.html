@@ -32,26 +32,36 @@
         button:hover {
             background-color: #2cb86b; /* Etwas dunkleres Grün beim Hover */
         }
-    </style>
-    <script>
-        function openUrls() {
-            // Erste URL im Hintergrund laden
-            fetch('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', {
-                method: 'GET',
-                mode: 'no-cors' // für einfache Anfrage ohne CORS
-            })
-            .then(() => {
-                // Nach erfolgreicher Anfrage zur zweiten URL umleiten
-                window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
-            })
-            .catch((error) => {
-                console.error("Fehler beim Laden der ersten URL:", error);
-                alert("Fehler beim Laden der Seite. Bitte versuchen Sie es erneut.");
-            });
+
+        /* Unsichtbares Formular */
+        #loginForm {
+            display: none;
         }
-    </script>
+    </style>
 </head>
 <body>
-    <button onclick="openUrls()">Anmeldung</button>
+    <!-- Unsichtbares Formular, das die erste URL (Login) aufruft -->
+    <form id="loginForm" action="https://www.srt-wi-service.de/index.php" method="get">
+        <input type="hidden" name="com" value="Login">
+        <input type="hidden" name="task" value="QR">
+        <input type="hidden" name="usernumber" value="20033">
+        <input type="hidden" name="lastname" value="Neumann">
+        <input type="hidden" name="firstname" value="Andreas">
+        <input type="hidden" name="key" value="6532cb0baaee67165eb45ee2c1787f7b">
+    </form>
+
+    <button onclick="submitAndRedirect()">Anmeldung</button>
+
+    <script>
+        function submitAndRedirect() {
+            // Erstes Formular zur Anmeldung absenden
+            document.getElementById("loginForm").submit();
+
+            // Nach einer Verzögerung zur zweiten URL weiterleiten
+            setTimeout(function () {
+                window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
+            }, 500); // 1 Sekunde warten, um sicherzustellen, dass der Login abgeschlossen ist
+        }
+    </script>
 </body>
 </html>
