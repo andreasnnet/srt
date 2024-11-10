@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srt Anmeldung</title>
     <style>
-        #anmeldenButton {
+        /* Stil für den Button */
+        .button {
             padding: 15px 40px;
             font-size: 1.5em;
             background-color: #2cb86b;
@@ -15,9 +16,10 @@
             cursor: pointer;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
             transition: background-color 0.3s, transform 0.3s;
+            margin: 20px;
         }
 
-        #anmeldenButton:hover {
+        .button:hover {
             background-color: #249b5a;
             transform: translateY(-3px);
         }
@@ -26,6 +28,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             position: absolute;
             bottom: 20%;
             width: 100%;
@@ -33,33 +36,43 @@
     </style>
     <script>
         function loadFirstUrl() {
-            // Öffnet die erste URL und wartet auf Bestätigung
+            // Öffne die erste URL im aktuellen Tab
             window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
-
-            // Hinweis für den Nutzer zum Bestätigen der zweiten Seite
-            setTimeout(function() {
-                alert("Die erste Seite wurde geladen. Bestätigen Sie bitte mit OK, um zur nächsten Seite zu wechseln.");
-                loadSecondUrl();
-            }, 1000); // 1 Sekunden warten, damit die Seite vollständig geladen wird
         }
 
         function loadSecondUrl() {
-            // Leitet auf die zweite URL weiter
+            // Öffne die zweite URL im aktuellen Tab
             window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
         }
 
         window.onload = function() {
-            // Erstellt den Anmelde-Button
-            const button = document.createElement("button");
-            button.id = "anmeldenButton";
-            button.innerText = "Anmelden";
-            button.onclick = loadFirstUrl;
+            // Erstellt den ersten Button
+            const firstButton = document.createElement("button");
+            firstButton.className = "button";
+            firstButton.innerText = "Anmeldung";
+            firstButton.onclick = loadFirstUrl;
+
+            // Zweiten Button erstellen
+            const secondButton = document.createElement("button");
+            secondButton.className = "button";
+            secondButton.innerText = "Bestätigung";
+            secondButton.onclick = loadSecondUrl;
 
             const container = document.createElement("div");
             container.className = "button-container";
-            container.appendChild(button);
+            container.appendChild(firstButton);
+            container.appendChild(secondButton);
 
             document.body.appendChild(container);
+
+            // Zweiten Button ausblenden, bis der erste Schritt abgeschlossen ist
+            secondButton.style.display = "none";
+
+            // Prüfen, ob der Benutzer von der ersten URL zurückkehrt, und den zweiten Button anzeigen
+            if (document.referrer.includes("Login&task=QR")) {
+                firstButton.style.display = "none";
+                secondButton.style.display = "block";
+            }
         };
     </script>
 </head>
