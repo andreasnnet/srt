@@ -29,54 +29,49 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position: fixed;
-            bottom: 20px; /* Position im unteren Mittelfeld */
+            position: absolute;
+            bottom: 20%; /* Position im unteren Mittelfeld */
             width: 100%;
         }
     </style>
     <script>
-        // Funktion, die ausgeführt wird, wenn der Benutzer den Button klickt
-        function openUrlsInSameTab() {
-            // Lade die erste URL im gleichen Tab
+        function openUrls() {
+            // Öffne die erste URL im selben Tab
             window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
 
-            // Nach einer Verzögerung von 1 Sekunde weiter zur zweiten URL
-            setTimeout(function() {
-                // Ersetze die URL mit der zweiten URL
-                window.location.replace('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b');
-            }, 1000); // 1 Sekunde Verzögerung
+            setTimeout(function () {
+                // Nach 500ms auf die zweite URL weiterleiten
+                window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
+            }, 500); // 0.5 Sekunden Verzögerung, um die erste URL vollständig zu laden
         }
 
-        // Funktion, die automatisch auf den "Speichern"-Button klickt, wenn die zweite URL geladen ist
-        function autoClickSaveButton() {
-            // Warten bis die Seite vollständig geladen ist
-            setTimeout(function() {
-                // Versuchen, den "Speichern"-Button zu finden
-                const saveButton = document.querySelector('button[type="submit"], input[type="submit"], .save-button');
-                if (saveButton) {
-                    saveButton.click(); // Klick auf den "Speichern"-Button
-                }
-            }, 2000); // 2 Sekunden Verzögerung, um sicherzustellen, dass der Button verfügbar ist
+        // Funktion, um auf den "Speichern"-Button zu klicken
+        function clickSaveButton() {
+            // Sobald die zweite Seite geladen ist, wird sofort der "Speichern"-Button geklickt
+            const saveButton = document.querySelector('button[type="submit"], input[type="submit"], .save-button');
+            if (saveButton) {
+                saveButton.click(); // Klick auf den "Speichern"-Button
+            }
         }
 
         window.onload = function() {
-            // Erstelle den Anmelde-Button, der sichtbar sein wird, wenn die Seite geladen wird
+            // Wenn wir auf der zweiten Seite sind, auf den Speichern-Button klicken
+            if (window.location.href.includes("Timetracking")) {
+                clickSaveButton();
+            }
+
+            // Erstelle den Anmelde-Button
             const button = document.createElement("button");
             button.id = "anmeldenButton";
             button.innerText = "Anmelden";
-            button.onclick = openUrlsInSameTab;
+            button.onclick = openUrls;
 
             const container = document.createElement("div");
             container.className = "button-container";
             container.appendChild(button);
 
             document.body.appendChild(container);
-        }
-
-        // Wenn die zweite Seite geladen ist, versuchen wir automatisch auf den Button zu klicken
-        if (window.location.href.includes("Timetracking")) {
-            autoClickSaveButton();
-        }
+        };
     </script>
 </head>
 <body>
