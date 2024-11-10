@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srt Anmeldung</title>
     <style>
+        /* Hintergrund mit einem iframe */
+        .background-iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            border: none;
+        }
+
         /* Stil für die Buttons */
         .button {
             padding: 15px 40px;
@@ -36,6 +47,9 @@
     </style>
 </head>
 <body>
+    <!-- Iframe für den Website-Hintergrund -->
+    <iframe class="background-iframe" src="https://www.srt-wiesbaden.de/"></iframe>
+
     <div class="button-container">
         <!-- Erste Seite Button -->
         <button class="button" onclick="window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');">
