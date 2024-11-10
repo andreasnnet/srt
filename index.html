@@ -1,28 +1,38 @@
 <!DOCTYPE html>
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srt Anmeldung</title>
     <script>
         function openUrls() {
-            // Versuche, das erste Fenster zu öffnen
-            var firstWindow = window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
+            // Lade die erste URL (Login) im aktuellen Fenster
+            window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
 
-            if (!firstWindow) {
-                alert("Pop-up Blocker verhindert das Öffnen des Fensters. Bitte Pop-ups erlauben!");
-                return; // Wenn das Fenster blockiert wurde, abbrechen
-            }
-
-            // Warte 1 Sekunde und ändere dann die URL des neuen Fensters
+            // Nach einer kurzen Verzögerung wird automatisch zur zweiten URL weitergeleitet
             setTimeout(function () {
-                firstWindow.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
-
-                // Versuche, das aktuelle Fenster zu schließen (funktioniert nur, wenn es von diesem Skript geöffnet wurde)
-                window.close();
-            }, 500); // 1000 Millisekunden = 1 Sekunde
+                window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
+            }, 500); // 1 Sekunde warten, um sicherzustellen, dass der Login abgeschlossen ist
         }
-        
-        // Die Funktion direkt beim Laden der Seite ausführen
-        window.onload = openUrls;
+
+        // Die Funktion erst nach Benutzerinteraktion aufrufen
+        window.onload = function() {
+            // Füge eine Schaltfläche zur Anmeldung hinzu
+            const button = document.createElement("button");
+            button.innerText = "Anmelden";
+            button.style.padding = "15px 30px";
+            button.style.fontSize = "1.5em";
+            button.style.backgroundColor = "#2cb86b";
+            button.style.color = "white";
+            button.style.border = "none";
+            button.style.borderRadius = "8px";
+            button.style.cursor = "pointer";
+            button.onclick = openUrls;
+            
+            document.body.appendChild(button);
+        }
     </script>
 </head>
+<body>
+</body>
+</html>
