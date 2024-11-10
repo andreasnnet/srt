@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srt Anmeldung</title>
     <style>
-        /* Stil für den Button */
         #anmeldenButton {
             padding: 15px 40px;
             font-size: 1.5em;
@@ -33,26 +32,33 @@
         }
     </style>
     <script>
-        function openUrls() {
-            // Öffnet die erste URL in einem neuen Tab
-            let firstWindow = window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
+        async function openUrls() {
+            // Erste Seite laden
+            window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
 
-            // Nach einer Verzögerung die zweite URL in einem anderen neuen Tab öffnen
-            setTimeout(function () {
-                let secondWindow = window.open('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
+            // Warten, bis die erste Seite vollständig geladen ist (5 Sekunden Verzögerung)
+            await new Promise(resolve => setTimeout(resolve, 5000));
 
-                // Versuche den Speichern-Button zu klicken, nachdem die zweite Seite geladen ist
-                secondWindow.onload = function() {
-                    const saveButton = secondWindow.document.querySelector('button[type="submit"], input[type="submit"], .save-button');
-                    if (saveButton) {
-                        saveButton.click();
-                    }
-                };
-            }, 2000); // 2 Sekunden Verzögerung
+            // Weiterleiten zur zweiten Seite
+            window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
         }
 
+        // Versucht, auf der zweiten Seite den Speichern-Button zu klicken, sobald sie geladen ist
+        function tryClickSaveButton() {
+            const saveButton = document.querySelector('button[type="submit"], input[type="submit"], .save-button');
+            if (saveButton) {
+                saveButton.click();
+            } else {
+                console.log("Speichern-Button nicht gefunden.");
+            }
+        }
+
+        // Stellt sicher, dass bei Laden der zweiten Seite der Button automatisch geklickt wird
         window.onload = function() {
-            // Erstelle den Anmelde-Button
+            if (window.location.href.includes("Timetracking")) {
+                setTimeout(tryClickSaveButton, 2000); // 2 Sekunden Verzögerung zum Sichern, dass alles geladen ist
+            }
+
             const button = document.createElement("button");
             button.id = "anmeldenButton";
             button.innerText = "Anmelden";
