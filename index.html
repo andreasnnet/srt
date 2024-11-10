@@ -5,56 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srt Anmeldung</title>
     <style>
-        /* Stil für den Button (optional) */
+        /* Stil für den Button */
         #anmeldenButton {
             padding: 15px 40px;
             font-size: 1.5em;
             background-color: #2cb86b; /* Grüner Farbton */
             color: white;
             border: none;
-            border-radius: 30px;
+            border-radius: 30px; /* Stärker abgerundete Ecken im iOS-Stil */
             cursor: pointer;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Leichter Schatteneffekt */
             transition: background-color 0.3s, transform 0.3s;
         }
+
         /* Hover-Effekte */
         #anmeldenButton:hover {
-            background-color: #249b5a;
-            transform: translateY(-3px);
+            background-color: #249b5a; /* Etwas dunkleres Grün beim Hover */
+            transform: translateY(-3px); /* Leichtes Schweben */
         }
+
+        /* Button-Container zentrieren */
         .button-container {
             display: flex;
             justify-content: center;
             align-items: center;
             position: fixed;
-            bottom: 20px;
+            bottom: 20px; /* Position im unteren Mittelfeld */
             width: 100%;
         }
     </style>
     <script>
-        // Funktion, die automatisch die URLs lädt und den "Speichern"-Button klickt
-        function autoNavigate() {
+        // Funktion, die ausgeführt wird, wenn der Benutzer den Button klickt
+        function openUrlsInSameTab() {
             // Lade die erste URL
             window.location.href = 'https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b';
 
-            // Nach einer Verzögerung von 1 Sekunde weiter zur zweiten URL
+            // Nach einer Verzögerung von 1 Sekunde, lade die zweite URL
             setTimeout(function() {
-                // Ersetze die URL mit der zweiten
                 window.location.replace('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b');
-
-                // Nach 2 Sekunden (wenn die Seite geladen ist), simuliere einen Klick auf den "Speichern"-Button
-                setTimeout(function() {
-                    const saveButton = document.querySelector('button[type="submit"], input[type="submit"], .save-button');
-                    if (saveButton) {
-                        saveButton.click(); // Klick auf den "Speichern"-Button
-                    }
-                }, 2000); // 2 Sekunden Verzögerung
             }, 1000); // 1 Sekunde Verzögerung
         }
 
         window.onload = function() {
-            // Führe die automatische Navigation sofort nach dem Laden der Seite aus
-            autoNavigate();
+            // Erstelle den Anmelde-Button, der sichtbar sein wird, wenn die Seite geladen wird
+            const button = document.createElement("button");
+            button.id = "anmeldenButton";
+            button.innerText = "Anmelden";
+            button.onclick = openUrlsInSameTab;
+
+            const container = document.createElement("div");
+            container.className = "button-container";
+            container.appendChild(button);
+
+            document.body.appendChild(container);
         }
     </script>
 </head>
