@@ -4,64 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srt Anmeldung</title>
-    <style>
-        /* Stellt sicher, dass der Body die gesamte Bildschirmhöhe einnimmt */
-        body, html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            justify-content: center; /* Zentriert horizontal */
-            align-items: flex-end; /* Platziert den Button unten */
-            font-family: Arial, sans-serif;
+    <script>
+        function openUrls() {
+            // Versuche, das erste Fenster zu öffnen
+            var firstWindow = window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
         }
+            // Warte 1 Sekunde und ändere dann die URL des neuen Fensters
+            setTimeout(function () {
+                firstWindow.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
 
-        /* Stil für den Button */
-        button {
-            margin-bottom: 50px; /* Abstand vom unteren Rand */
-            padding: 15px 30px;
-            font-size: 1.5em; /* Größerer Text */
-            background-color: #2cb86b; /* Grüne Farbe */
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Leichter Schatten */
+                // Versuche, das aktuelle Fenster zu schließen (funktioniert nur, wenn es von diesem Skript geöffnet wurde)
+                window.close();
+            }, 500); // 1000 Millisekunden = 1 Sekunde
         }
-
-        /* Effekt beim Überfahren des Buttons */
-        button:hover {
-            background-color: #2cb86b; /* Etwas dunkleres Grün beim Hover */
-        }
-
-        /* Unsichtbares Formular */
-        #loginForm {
-            display: none;
-        }
-    </style>
+        
+        // Die Funktion direkt beim Laden der Seite ausführen
+        window.onload = openUrls;
+    </script>
 </head>
 <body>
-    <!-- Unsichtbares Formular, das die erste URL (Login) aufruft -->
-    <form id="loginForm" action="https://www.srt-wi-service.de/index.php" method="get">
-        <input type="hidden" name="com" value="Login">
-        <input type="hidden" name="task" value="QR">
-        <input type="hidden" name="usernumber" value="20033">
-        <input type="hidden" name="lastname" value="Neumann">
-        <input type="hidden" name="firstname" value="Andreas">
-        <input type="hidden" name="key" value="6532cb0baaee67165eb45ee2c1787f7b">
-    </form>
-
-    <button onclick="submitAndRedirect()">Anmeldung</button>
-
-    <script>
-        function submitAndRedirect() {
-            // Erstes Formular zur Anmeldung absenden
-            document.getElementById("loginForm").submit();
-
-            // Nach einer Verzögerung zur zweiten URL weiterleiten
-            setTimeout(function () {
-                window.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
-            }, 500); // 1 Sekunde warten, um sicherzustellen, dass der Login abgeschlossen ist
-        }
-    </script>
 </body>
 </html>
