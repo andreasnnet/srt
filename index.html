@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,12 @@
         function openUrls() {
             // Versuche, das erste Fenster zu öffnen
             var firstWindow = window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
-        }
+
+            if (!firstWindow) {
+                alert("Pop-up Blocker verhindert das Öffnen des Fensters. Bitte Pop-ups erlauben!");
+                return; // Wenn das Fenster blockiert wurde, abbrechen
+            }
+
             // Warte 1 Sekunde und ändere dann die URL des neuen Fensters
             setTimeout(function () {
                 firstWindow.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
@@ -22,6 +26,3 @@
         window.onload = openUrls;
     </script>
 </head>
-<body>
-</body>
-</html>
