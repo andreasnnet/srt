@@ -7,12 +7,16 @@
     <script>
         function openUrls() {
             // Öffne die erste URL (Login) in einem neuen Tab
-            window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
+            const firstTab = window.open('https://www.srt-wi-service.de/index.php?com=Login&task=QR&usernumber=20033&lastname=Neumann&firstname=Andreas&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
 
-            // Öffne die zweite URL (Timetracking) in einem neuen Tab nach kurzer Verzögerung
+            // Nach einer Verzögerung öffne die zweite URL im gleichen Tab
             setTimeout(function () {
-                window.open('https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b', '_blank');
-            }, 500); // 500 ms Verzögerung
+                if (firstTab) {
+                    firstTab.location.href = 'https://www.srt-wi-service.de/index.php?com=Timetracking&task=QR&object=0&type=28&key=6532cb0baaee67165eb45ee2c1787f7b';
+                } else {
+                    alert('Popup-Blocker aktiv: Bitte deaktivieren Sie den Popup-Blocker und versuchen Sie es erneut.');
+                }
+            }, 1000); // 1 Sekunde Verzögerung für den Login-Vorgang
         }
 
         window.onload = function() {
